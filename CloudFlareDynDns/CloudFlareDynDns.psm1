@@ -36,6 +36,13 @@ Function Update-CloudFlareDynamicDns
 		Checks ipinfo.io for current external IP address. Checks CloudFlare's API for current IP of homelab.example.com.
 		
 		If record doesn't exist within CloudFlare, it will be created. If record exists, but does not match to current external IP, the record will be updated. If the external IP and the CloudFlare IP match, no changes will be made.
+ 
+ .EXAMPLE
+        Update-CloudFlareDynamicDns -Token 1234567893feefc5f0q5000bfo0c38d90bbeb -Email example@example.com -Zone example.com -Record example.com
+        
+		Checks ipinfo.io for current external IP address. Checks CloudFlare's API for current IP of example.com.
+		
+		If record doesn't exist within CloudFlare, it will be created. If record exists, but does not match to current external IP, the record will be updated. If the external IP and the CloudFlare IP match, no changes will be made.
 
         .EXAMPLE
         Update-CloudFlareDynamicDns -Token 1234567893feefc5f0q5000bfo0c38d90bbeb -Email example@example.com -Zone example.com -Record homelab -UseDns
