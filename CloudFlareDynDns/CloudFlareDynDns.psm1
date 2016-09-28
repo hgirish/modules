@@ -72,7 +72,7 @@ Function Update-CloudFlareDynamicDns
         [switch]$UseDns
     )
 	
-	$hostname = "$record.$zone"
+	if ($Record -eq $zone) {$hostname = "$Zone"} 	else {$hostname = "$record.$zone"}
 	
 	$headers = @{
 		'X-Auth-Key' = $token
@@ -96,7 +96,7 @@ Function Update-CloudFlareDynamicDns
 	if ($cfzone.result.count -gt 0) { $zoneid = $cfzone.result.id } else { throw "Zone $zone does not exist" }
 	
 	Write-Output "Getting current IP for $hostname"
-	$recordurl = "$baseurl/$zoneid/dns_records/?name=$hostname"
+	$recordurl = "$baseurl/$zoneid/dns_records/?name=$hostname&type=A"
 	
 	if ($usedns -eq $true) { 
 		try { 
